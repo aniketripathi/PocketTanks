@@ -1,18 +1,13 @@
 package windows;
 
-import java.awt.Canvas;
 import java.awt.CardLayout;
-import java.awt.Panel;
-import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
-import javax.swing.JWindow;
 
 
 
 public class Game {
 	
-	private static final long serialVersionUID = 1L;
+	
 	
 
 	public static void createWindow(){

@@ -1,10 +1,8 @@
 package windows;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Frames extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -22,6 +20,6 @@ public class Frames extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocation(LOCATION_X, LOCATION_Y);
-		this.setBackground(Color.DARK_GRAY);
+		this.setBackground(Color.white);
 		}
 }
