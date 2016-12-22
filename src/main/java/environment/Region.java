@@ -45,7 +45,7 @@ public class Region {
 	}
 	
 	public Region getRegion(int width_percentage, int height_percentage){
-		return new Region(this.x, this.y, this.width * (width_percentage/100), this.height * (height_percentage /100));
+		return new Region(this.x, this.y, this.width * width_percentage/100, this.height * height_percentage /100);
 	}
 	
 	
@@ -55,6 +55,14 @@ public class Region {
 	
 	public int getUnitY(int blocks){
 		return (this.height/blocks);
+	}
+	
+	public int getBlocksX(int unit_x){
+		return (this.width/unit_x);
+	}
+	
+	public int getBlocksY(int unit_y){
+		return (this.height/unit_y);
 	}
 	
 	
@@ -67,11 +75,21 @@ public class Region {
 		
 		int unitX = this.getUnitX(x_blocks), unitY = this.getUnitY(y_blocks);
 		
-		for(int i = 1; i < x_blocks; i++) 
-			graphics.drawLine(this.x - this.width/2, unitY * i, this.width, unitY * i);
+		for(int i = 0; i <= x_blocks; i++) 
+			graphics.drawLine(this.x - this.width/2, this.y - this.height/2 + unitY * i, this.x + this.width/2, this.y - this.height/2 + unitY * i);
 		
-		for(int i = 1; i < y_blocks; i++) 
-			graphics.drawLine(unitX * i, this.y - this.height/2, unitX * i, this.y + this.height/2);
+		for(int i = 0; i <= y_blocks; i++) 
+			graphics.drawLine(this.x - this.width/2 +unitX * i, this.y - this.height/2, this.x - this.width/2 +unitX * i, this.y + this.height/2);
+		
+	}
+	
+		public void drawGridWithUnit(Graphics graphics, int unitX, int unitY){
+		
+		for(int i = 0; i <= this.height/unitX; i++) 
+			graphics.drawLine(this.x - this.width/2, this.y - this.height/2 + unitY * i, this.x + this.width/2, this.y - this.height/2 + unitY * i);
+		
+		for(int i = 0; i <= this.width/unitY; i++) 
+			graphics.drawLine(this.x - this.width/2 +unitX * i, this.y - this.height/2, this.x - this.width/2 +unitX * i, this.y + this.height/2);
 		
 	}
 	
@@ -94,12 +112,21 @@ public class Region {
 	}
 	
 	
-	public boolean isInside(Region region){
+	public boolean isInsideOf(Region region){
 		return (this.x + this.width/2 <= region.x + region.width/2 && this.y + this.height/2 <= region.y + region.height/2
 			&&  this.x - this.width/2 >= region.x - region.width/2 && this.y - this.height/2 >= region.y - region.height/2);
 	}
 	
-	public boolean isOutside(Region region){
-		return (!isInside(region));
+	public boolean isOutsideOf(Region region){
+		return (!isInsideOf(region));
+	}
+	
+	public boolean isInside(int x, int y){
+		return (x <= this.x + this.width/2  && x >= this.x - this.width/2		&&
+				y <= this.y + this.height/2 && y >= this.y - this.height/2);
+	}
+	
+	public boolean isOutside(int x, int y){
+		return (!isInside(x, y));
 	}
 }
