@@ -1,6 +1,6 @@
 package objects;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
+
 
 import environment.GameMap;
 
@@ -12,7 +12,7 @@ public abstract class GameObject {
 	protected float x_velocity;
 	protected float y_velocity;
 	protected GameMap map;
-	public ID id;
+	
 	
 	public float getX(){
 		return x;

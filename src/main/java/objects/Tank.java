@@ -3,23 +3,15 @@ package objects;
 import java.util.ArrayList;
 
 import Weapons.Weapons;
+import environment.Region;
 
 public class Tank extends GameObject{
 	
-	public String name;
 	private ArrayList<Weapons> weapons;
-	protected int score;
 	protected float angle;
 	protected int power ;
 	private static int i = 1;
-	
-	public Tank(String name){
-		this.name = name;
-	}
-	
-	public Tank(){
-		this.name = "Player" + i++; 
-	}
+	public short tankNumber;
 	
 	public void addWeapon(Weapons weapon){
 		weapons.add(weapon);
@@ -42,6 +34,12 @@ public class Tank extends GameObject{
 	public void moveRight(){
 		
 	}
+	
+	public static int getTankImageNumber(Region region){
+		return (region.x/10)%7 + 1;
+		
+	}
+	
 	
 	@Override
 	public void render() {
