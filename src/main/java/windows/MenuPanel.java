@@ -46,7 +46,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	private BufferedImage tankImage;
 	private StringBuffer tankImageFileName;
 	private char direction; // right or left
-	private final int TANK_NUMBER_INDEX	= 29;
+	private final int TANK_NUMBER_INDEX	= 39;
 	private CardLayout cardLayout;
 	
 	
@@ -60,7 +60,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 		direction = 'r';
 		paintThread = new Thread(this, "paintThread");
 		tankImageFileName = new StringBuffer();
-		tankImageFileName.append("src/main/resources/tank1/tank1.png");
+		tankImageFileName.append("src/main/resources/menuPanel/tank1/tank1.png");
 		this.cardLayout = cardLayout;
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -125,7 +125,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 			e.printStackTrace();
 			System.err.println("Error loading tank image.");
 		}
-		tankImageFileName.replace(TANK_NUMBER_INDEX, TANK_NUMBER_INDEX+1, new Integer(Tank.getTankImageNumber(tankRegion)).toString());
+		tankImageFileName.replace(TANK_NUMBER_INDEX, TANK_NUMBER_INDEX+1, new Integer(getTankImageNumber(tankRegion)).toString());
 		
 		
 		
@@ -173,6 +173,10 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 		
 	}
 	
+	private static int getTankImageNumber(Region region){
+		return (region.x/10)%7 + 1;
+		
+	}
 	
 	
 	

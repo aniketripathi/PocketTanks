@@ -2,64 +2,37 @@ package objects;
 
 
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import environment.GameMap;
+import environment.Region;
 
 public abstract class GameObject {
 
-	protected float x;
-	protected float y;
-	private String type;
-	protected float x_velocity;
-	protected float y_velocity;
-	protected GameMap map;
+	protected Region region;
+	protected int x_velocity;
+	protected int y_velocity;
+	protected StringBuffer fileNames;
+	protected BufferedImage image;
+	protected String folderFilesPath = null;	
+	protected GameMap gameMap;
 	
 	
-	public float getX(){
-		return x;
+	
+	public Region getRegion(){
+		return region;
 	}
 	
-	public float getY(){
-		return y;
-	}
+	public abstract void render(Graphics2D graphics);
 	
-	public void setX(float x){
-		this.x = x;
-	}
+	public abstract void update(ObjectHandler handler);
+
+
 	
-	public void getX(float y){
-		this.y = y;
-	}
-	
-	
-	public String getType(){
-		return type;
-	}
-	
-	
-	public void setType(String type){
-		this.type = type;
-	}
-	
-	
-	public void moveLeft(){
-		this.x += this.x_velocity;
-	}
-	
-	public void moveRight(){
-		this.x -= this.x_velocity;
-	}
-	
-	public void moveUp(){
-		this.y += this.y_velocity;
-	}
-	
-	public void moveDown(){
-		this.y -= this.y_velocity;
-	}
-	
-	
-	public abstract void render();
-	
-	public abstract void update();
-	
+
+
+
+
+
 }
