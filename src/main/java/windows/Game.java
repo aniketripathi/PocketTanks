@@ -26,7 +26,7 @@ public class Game {
 		frame.add(containerPanel);
 		frame.setVisible(true);
 		containerPanel.setVisible(true);
-		cardLayout.show(containerPanel, "gamePanel");
+		cardLayout.show(containerPanel, "menuPanel");
 
 	}
 	

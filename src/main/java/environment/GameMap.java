@@ -26,6 +26,7 @@ public class GameMap {
 	
 	public GameMap(Region gameRegion, int game_map_template){
 		this.gameRegion = gameRegion;
+		
 		bricksRegions = new ArrayList<Region>();
 		collisionObjects = new ArrayList<GameObject>();
 		

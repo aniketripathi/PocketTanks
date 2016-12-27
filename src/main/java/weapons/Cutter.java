@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import environment.GameMap;
 import environment.Region;
 import objects.Tank;
-import windows.Frames;
 
 public class Cutter extends Weapon{
 	
@@ -21,6 +20,9 @@ public class Cutter extends Weapon{
 	public Cutter(GameMap gameMap, Tank tank){
 		type = WeaponNames.CUTTER;
 
+		//set damage
+		damage = 2.3f;
+		
 		// set parent tank
 			parentTank = tank;
 		
@@ -39,14 +41,7 @@ public class Cutter extends Weapon{
 	//related to image
 			folderFilesPath = "src/main/resources/weapons/cutter/cutter1.png";
 			fileNames = new StringBuffer(folderFilesPath);
-			fileNames.replace(WEAPON_IMAGE_INDEX, WEAPON_IMAGE_INDEX+1, getWeaponImageNumber()+"");	
-			try {
-					image = ImageIO.read(new File(fileNames.toString()));
-				} catch (IOException e) {
-					System.err.println("Error loading cutter image");
-					e.printStackTrace();
-				}
-		
+			
 	}
 
 	@Override

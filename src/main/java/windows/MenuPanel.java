@@ -23,7 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import environment.Region;
-import objects.Tank;
 
 /**
  * @author Aniket 

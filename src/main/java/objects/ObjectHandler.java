@@ -27,6 +27,9 @@ public void renderObjects(Graphics2D graphics){
 		gameRenderObjects.get(i).render(graphics);
 }
 
+
+
+
 public void addGameUpdateObject(GameObject object){
 	gameUpdateObjects.add(object);
 }
