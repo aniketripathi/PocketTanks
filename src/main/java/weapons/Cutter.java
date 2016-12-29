@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import environment.GameMap;
 import environment.Region;
+import explosion.ExplosionTypes;
 import objects.Tank;
 
 public class Cutter extends Weapon{
@@ -18,8 +19,11 @@ public class Cutter extends Weapon{
 	private 	   final int 	WEAPON_IMAGE_INDEX = 40;
 	
 	public Cutter(GameMap gameMap, Tank tank){
-		type = WeaponNames.CUTTER;
+		type = WeaponTypes.CUTTER;
 
+		//set explosion type
+		explosionType = ExplosionTypes.NUKE_EXPLOSION;
+		
 		//set damage
 		damage = 2.3f;
 		

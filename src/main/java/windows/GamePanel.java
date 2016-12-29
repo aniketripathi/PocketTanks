@@ -11,6 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
+
 import javax.swing.AbstractAction;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
@@ -33,6 +35,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
 
+@SuppressWarnings("unused")
 public class GamePanel extends JPanel implements MouseListener, ActionListener, Runnable{
 
 
@@ -112,6 +115,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		
 		
 	// create player		
+		
 		player1 = new Player("Player 1", gameMap);
 		player2 = new Player("Player 2", gameMap);	
 		
@@ -162,7 +166,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
 		        if (value instanceof Weapon) {
-		            value = WeaponNames.getName( ((Weapon)value).getType());
+		            value = WeaponTypes.getName( ((Weapon)value).getType());
 		        }
 
 		        return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); //To change body of generated methods, choose Tools | Templates.
@@ -336,7 +340,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	
 	
 	private void renderGame(Graphics2D graphics){
-		//draw grid
+		//to draw grid remove comment 
 		//gameRegion.drawGridWithUnit(graphics, UNIT_X, UNIT_Y);
 		
 		//draw game objects
@@ -362,7 +366,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	
 	
 	private void updatePropertycomponentsByTurn(){
-		if(turn == player1.getPlayerNumber()){
+		if(turn == player1.getPlayerNumber()){			//if player1's turn then enable his components and disable the other's
 			powerSlider1.setEnabled(true);
 			weaponsListComboBox1.setEnabled(true);
 			angleSpinner1.setEnabled(true);
@@ -373,7 +377,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		}
 		
 		else {
-			powerSlider2.setEnabled(true);
+			powerSlider2.setEnabled(true);			//if player2's turn then enable his components and disable other's
 			weaponsListComboBox2.setEnabled(true);
 			angleSpinner2.setEnabled(true);
 			
@@ -385,7 +389,8 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	}
 	
 	
-	private void updatePropertycomponents(int playerNumber, boolean status){
+	// enable or disable property components of a specific player only
+	private void updatePropertycomponents(int playerNumber, boolean status){	
 		if(playerNumber == player1.getPlayerNumber()){
 			powerSlider1.setEnabled(status);
 			weaponsListComboBox1.setEnabled(status);
@@ -455,7 +460,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 			endGame();
 		}
 		
-		// update turn if the signal is set	
+		// turn off any signal
 		Signals.changeTurn = false;			// turn changed , turn off the signal
 	
 	}
@@ -564,6 +569,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		
 		fireButton.setEnabled(false);		//no more firing
 		
+		// create an exit button and give it properties
 		JButton exitButton = new JButton();
 		exitButton.setText("Exit");
 		exitButton.setLocation(gameRegion.width/2, gameRegion.height/2);
@@ -577,6 +583,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		});
 		exitButton.requestFocus();
 		
+		//create a message showing which player won the game
 		
 		JLabel whoWon = new JLabel();
 		String message ;
@@ -593,6 +600,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		// stop paintThread;
 		isRunning = false;
 		try {
+			this.repaint();				// repaint once before ending the game
 			paintThread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();

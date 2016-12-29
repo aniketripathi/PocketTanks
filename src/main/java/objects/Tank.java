@@ -10,9 +10,8 @@ import javax.imageio.ImageIO;
 
 import environment.GameMap;
 import environment.Region;
-import weapons.Cutter;
-import weapons.SingleShot;
 import weapons.Weapon;
+import weapons.WeaponTypes;
 
 public class Tank extends GameObject{
 	
@@ -79,7 +78,7 @@ public class Tank extends GameObject{
 		
 		// create weapons list
 		weapons = new ArrayList<Weapon>();		// create new weapons list
-		giveWeaponsToTank();					// give weapons to tank
+		WeaponTypes.addWeaponsToTank(gameMap, this);
 	
 	}
 	
@@ -88,18 +87,7 @@ public class Tank extends GameObject{
 		return parentPlayer;
 	}
 	
-	
-	private void giveWeaponsToTank(){
-		
-		SingleShot singleShot = new SingleShot(gameMap, this);
-		addWeapon(singleShot);
-		
-		Cutter cutter = new Cutter(gameMap, this);
-		addWeapon(cutter);
-		
-	}
-	
-	
+
 	
 	
 	
@@ -165,18 +153,21 @@ public class Tank extends GameObject{
 	
 	
 	public void moveLeft(){
-	
+	if(moves > 0){
 		singleLeftMoves += SINGLE_MOVE_LIMIT; 	//add unit moves 
 		isMovingLeft = true;					// set left moving to true
-		--moves;								// reduce no of moves
+		--moves;							// reduce no of moves
+		}	
 	}
 	
 	
 	
 	public void moveRight(){
-		singleRightMoves = SINGLE_MOVE_LIMIT;	// add unit moves
+		if(moves > 0){
+		singleRightMoves += SINGLE_MOVE_LIMIT;	// add unit moves
 		isMovingRight = true;					// set right moving to true;
 		--moves;								// reduce no of moves;
+		}
 	}
 	
 	
@@ -218,7 +209,6 @@ public class Tank extends GameObject{
 	
 	@Override
 	public void update(ObjectHandler handler) {
-		if(moves >= 0){			// if moves left
 			if(isMovingLeft){		// moving left enabled
 			
 			if(singleLeftMoves > 0){
@@ -254,9 +244,6 @@ public class Tank extends GameObject{
 			isMovingRight = false;						// moving disabled
 		}
 	}
-		}
-	// all moves are already finished	
-		else handler.deleteGameUpdateObject(this);	
 		
 	}
 	

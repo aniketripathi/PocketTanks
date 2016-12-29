@@ -49,7 +49,7 @@ public class Player {
 		return Math.round(score);
 	}
 
-	public void decreaseScore(float damage) {
+	public void decreaseScore(float score) {
 		this.score -= score;
 		
 	}

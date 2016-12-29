@@ -6,10 +6,11 @@ import java.awt.Graphics;
 
 public class Region {
 	
-	public int x;
-	public int y;
-	public int width;
-	public int height;
+	public int x;				//x- coordinate of center
+	public int y;				//y-coordinate of center
+	public int width;			//width of region
+	public int height;			// height of region
+	
 	
 	public Region(int x, int y, int width, int height){
 		this.x = x;
@@ -82,6 +83,7 @@ public class Region {
 			graphics.drawLine(this.x - this.width/2 +unitX * i, this.y - this.height/2, this.x - this.width/2 +unitX * i, this.y + this.height/2);
 		
 	}
+	
 	
 		public void drawGridWithUnit(Graphics graphics, int unitX, int unitY){
 		

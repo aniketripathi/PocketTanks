@@ -8,25 +8,34 @@ import objects.Tank;
 
 public class GameMap {
 
+// environmental factors
 	public  int gravity;
-	public  int leftWind;
-	public  int rightWind;
+	public  int leftWind;			// not in use 
+	public  int rightWind;			// not in use
+	
+// bricks	
 	private int numberOfBricks;
 	private  ArrayList<Region> bricksRegions;
 	
-	
+// spawning points of tanks	
 	public Region gameRegion;
 	public Region tank1Region;
 	public Region tank2Region;
 	
+// objects which don't die and are responsible for collisions	
 	public static ArrayList<GameObject> collisionObjects;
+	
+// game template is a unique id for a map	
 	public static final int GAME_MAP_TEMPLATE1 = 1;
 	
 	
 	
 	public GameMap(Region gameRegion, int game_map_template){
+	
+		//set game region
 		this.gameRegion = gameRegion;
 		
+		// create array lists
 		bricksRegions = new ArrayList<Region>();
 		collisionObjects = new ArrayList<GameObject>();
 		

@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 import environment.GameMap;
 import environment.Region;
-import explosion.ExplosionNames;
+import explosion.ExplosionTypes;
 import objects.Tank;
 
 public class SingleShot extends Weapon{
@@ -18,9 +18,10 @@ public class SingleShot extends Weapon{
 	private 	   final int 	WEAPON_IMAGE_INDEX = 51;
 	
 	public SingleShot(GameMap gameMap, Tank tank){
-		type = WeaponNames.SINGLE_SHOT;
+		type = WeaponTypes.SINGLE_SHOT;
 		
-		velocityUpdatePeriod = 2;
+		//set explosion type
+		explosionType = ExplosionTypes.SMALL_EXPLOSION;
 		
 		//set damage
 			damage = 1;
@@ -37,7 +38,7 @@ public class SingleShot extends Weapon{
 		y_velocity = 0;	
 		
 		//set explosion type
-		explosionType = ExplosionNames.SMALL_EXPLOSION;
+		explosionType = ExplosionTypes.SMALL_EXPLOSION;
 		
 		// related to region
 				region = new Region(0,0,WEAPON_IMAGE_WIDTH, WEAPON_IMAGE_HEIGHT);

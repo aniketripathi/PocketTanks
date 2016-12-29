@@ -1,6 +1,9 @@
 package weapons;
 
-public abstract class WeaponNames {
+import environment.GameMap;
+import objects.Tank;
+
+public abstract class WeaponTypes {
 	
 	public static final int SINGLE_SHOT = 0;
 	public static final int CUTTER		= 1;
@@ -14,11 +17,22 @@ public abstract class WeaponNames {
 			case CUTTER		:		return "Cutter";
 			 
 			default: {
-				System.err.println("Weapon not registered in WeaponNames.");
+				System.err.println("Weapon not registered in WeaponTypes.");
 				return null;
 			}
 	}
 	
 }
+	
+	
+	public static void addWeaponsToTank(GameMap gameMap, Tank tank){
+		
+		SingleShot singleShot = new SingleShot(gameMap,	tank);
+		tank.addWeapon(singleShot);
+		
+		Cutter	cutter = new Cutter(gameMap,	tank);
+		tank.addWeapon(cutter);
+		
+	}
 	
 }

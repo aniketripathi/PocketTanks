@@ -32,20 +32,27 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	
 	private static final long serialVersionUID = 1L;
 	
+// timer and thread	
 	private Thread paintThread;
 	private Timer paintTimer;
-	private Graphics2D graphics;
+	
+// regions	
 	private Region wholeRegion;
 	private Region playRegion;
 	private Region optionsRegion;
 	private Region exitRegion;
 	private Region titleRegion;
 	private Region tankRegion;
+
+// to store images and their file path
 	private BufferedImage titleImage;
 	private BufferedImage tankImage;
 	private StringBuffer tankImageFileName;
-	private char direction; // right or left
 	private final int TANK_NUMBER_INDEX	= 39;
+
+	private char direction; // right or left
+	
+// to enable changing of panels of main screen from within the panel	
 	private CardLayout cardLayout;
 	
 	
@@ -101,7 +108,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	
 	
 	
-	public void render(){
+	public void render(Graphics2D graphics){
 		
 		graphics.setBackground(Color.BLUE);
 		
@@ -203,8 +210,8 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	@Override
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
-		this.graphics = (Graphics2D)graphics;
-		render();
+		Graphics2D graphics2D = (Graphics2D)graphics;
+		render(graphics2D);
 	}
 	
 	

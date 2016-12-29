@@ -4,12 +4,13 @@ package weapons;
 import environment.GameMap;
 import environment.Region;
 import explosion.Explosion;
-import explosion.ExplosionNames;
+import explosion.ExplosionTypes;
 import objects.GameObject;
 import objects.ObjectHandler;
 import objects.Tank;
 import utility.Signals;
 
+@SuppressWarnings("unused")
 public abstract class Weapon extends GameObject{
 
 
@@ -20,7 +21,6 @@ protected int unitSecondCount = 0;
 protected final int MAX_UNIT_SECOND_COUNT = 5;
 protected int explosionType;
 protected float damage;
-protected int velocityUpdatePeriod;
 
 public int getType(){
 	return type;
@@ -36,13 +36,13 @@ if(isMoving){
 		if(region.x - region.width/2 > gameRegion.x - gameRegion.width/2	&& region.x + region.width/2 < gameRegion.x + gameRegion.width/2
 			&& region.y + region.height/2 < gameRegion.y + gameRegion.height/2){
 			
-	for(GameObject gameObject: GameMap.collisionObjects){
-			if(region.isColliding(gameObject.getRegion())){
-				if((gameObject instanceof Tank && gameObject.equals(parentTank)))		continue;
-				isMoving = false;
+	for(GameObject gameObject: GameMap.collisionObjects){					// scan through collision objects
+			if(region.isColliding(gameObject.getRegion())){							
+				if((gameObject instanceof Tank && gameObject.equals(parentTank)))		continue;			// weapon collided through parent tank then ignore
+				isMoving = false;																				
 				handler.deleteGameRenderObject(this);
 				handler.deleteGameUpdateObject(this);
-				Explosion explosion = Explosion.getExplosionInstance(this, ExplosionNames.SMALL_EXPLOSION, this.gameMap, region.x, region.y);
+				Explosion explosion = Explosion.getExplosionInstance(this, explosionType, this.gameMap, region.x, region.y);
 				handler.addGameUpdateObject(explosion);
 				handler.addGameRenderObject(explosion);
 				return;
