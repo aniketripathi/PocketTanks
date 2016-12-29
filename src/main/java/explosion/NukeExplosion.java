@@ -14,13 +14,14 @@ import objects.Tank;
 import utility.Signals;
 import weapons.Weapon;
 
-public class SmallExplosion extends Explosion{
+public class NukeExplosion extends Explosion {
 	
 	private final 	int 	EXPLOSION_SIZE_INCREASE_FACTOR = 2;
 	private 		int 	updateTimes;
-	private final	int 	TOTAL_IMAGES = 31;
+	private final	int 	TOTAL_IMAGES = 50;
 	
-	public SmallExplosion(Weapon parentWeapon, GameMap gameMap, int x, int y){
+	
+public NukeExplosion(Weapon parentWeapon, GameMap gameMap, int x, int y){
 	
 		
 		
@@ -39,36 +40,39 @@ public class SmallExplosion extends Explosion{
 		
 		//set image related properties
 
-		folderFilesPath = "src/main/resources/explosions/small_explosion/explosion01.png";
+		folderFilesPath = "src/main/resources/explosions/nuke_explosion/explosion01.png";
 		fileNames = new StringBuffer(folderFilesPath);
-		EXPLOSION_IMAGE_INDEX = 55;
+		EXPLOSION_IMAGE_INDEX = 54;
 		
 		//set updateTimes;
 		updateTimes = 1;
 		
 	}
-	
+
 	public int getImageNumber(int factor){
-		if(factor < 10)		return factor;				
-		return factor;
-	}
-	
+	if(factor < 10)		return factor;				
+	return factor;
+}
+
+
 	@Override
 	public void render(Graphics2D graphics) {
 		//get image first
-	if(updateTimes < 10)		fileNames.replace(EXPLOSION_IMAGE_INDEX + 1, EXPLOSION_IMAGE_INDEX + 2, getImageNumber(updateTimes)+"");
-	else 						fileNames.replace(EXPLOSION_IMAGE_INDEX, EXPLOSION_IMAGE_INDEX + 2, "" + getImageNumber(updateTimes));
-	++updateTimes;
-		try {
-			image = ImageIO.read(new File(fileNames.toString()));
-		} catch (IOException e) {
-			System.err.println("Error loading image of small explosion.");
-			e.printStackTrace();
+		if(updateTimes < 10)		fileNames.replace(EXPLOSION_IMAGE_INDEX + 1, EXPLOSION_IMAGE_INDEX + 2, getImageNumber(updateTimes)+"");
+		else 						fileNames.replace(EXPLOSION_IMAGE_INDEX, EXPLOSION_IMAGE_INDEX + 2, "" + getImageNumber(updateTimes));
+		++updateTimes;
+			try {
+				image = ImageIO.read(new File(fileNames.toString()));
+			} catch (IOException e) {
+				System.err.println("Error loading image of nuke explosion.");
+				e.printStackTrace();
+			}
+			
+			graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+			
 		}
 		
-		graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
-		
-	}
+	
 
 	@Override
 	public void update(ObjectHandler handler) {
@@ -93,7 +97,5 @@ public class SmallExplosion extends Explosion{
 		}
 		
 	}
-
-
 
 }
