@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import utility.Config;
 import utility.Signals;
 import environment.GameMap;
 import environment.Region;
@@ -115,9 +116,9 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		
 		
 	// create player		
-		
-		player1 = new Player("Player 1", gameMap);
-		player2 = new Player("Player 2", gameMap);	
+		Config config = new Config();
+		player1 = new Player(config.getPlayerName(Config.PLAYER_NAME1), gameMap);
+		player2 = new Player(config.getPlayerName(Config.PLAYER_NAME2), gameMap);	
 		
 	// add player's tanks to collision objects
 
@@ -386,6 +387,12 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 			angleSpinner1.setEnabled(false);
 		}
 		fireButton.setEnabled(true);
+	}
+	
+	
+	public void updatePlayerNames(String playerName1, String playerName2){
+		player1.setName(playerName1);
+		player2.setName(playerName2);
 	}
 	
 	

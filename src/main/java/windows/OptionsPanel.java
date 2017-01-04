@@ -1,9 +1,12 @@
 package windows;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.prefs.Preferences;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -11,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+
+import utility.Config;
 
 public class OptionsPanel extends JPanel {
 
@@ -23,9 +28,14 @@ public class OptionsPanel extends JPanel {
 	private JButton cancelButton;
 	private JButton okButton;
 	
+	
+	
+	
 	public OptionsPanel(final CardLayout cardLayout){
 		
+		final Config config = new Config();
 		this.setLayout(null);
+			
 		
 		name1 = new JLabel("Player 1 Name");
 		name1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -46,14 +56,14 @@ public class OptionsPanel extends JPanel {
 		add(name2);
 		
 		
-		playerName1 = new JTextField("Player1");
+		playerName1 = new JTextField(config.getPlayerName(Config.PLAYER_NAME1));
 		playerName1.setLocation(name1.getX(), name1.getY() + 75);
 		playerName1.setSize(200, 50);
 		playerName1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		add(playerName1);
 		
 		
-		playerName2 = new JTextField("Player2");
+		playerName2 = new JTextField(config.getPlayerName(Config.PLAYER_NAME2));
 		playerName2.setLocation(name2.getX(), name2.getY() + 75);
 		playerName2.setSize(200, 50);
 		playerName2.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -85,21 +95,27 @@ public class OptionsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
-				if(playerName1.getText().toString().length() >= 15 || playerName2.getText().toString().length() >= 15 ){
-					JDialog errorDialog = new JDialog();
-					errorDialog.setTitle("Error");
-					errorDialog.add(new JLabel("Player name larger than 15 letters"));
-					errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					errorDialog.setSize(200, 100);
-					errorDialog.setVisible(true);
+				if(playerName1.getText().toString().length() <= 15 || playerName2.getText().toString().length() <= 15 ){
+						
+						config.putPlayerName(Config.PLAYER_NAME1, playerName1.getText().toString());
+						config.putPlayerName(Config.PLAYER_NAME2, playerName2.getText().toString());
+						cardLayout.show(((JButton)actionEvent.getSource()).getParent().getParent(), "menuPanel");
+						
 				}
 				
 				else {
-						
+				JLabel error= new JLabel("* The number of characters in name should be less than 16.");
+				error.setFont(new Font("Tahoma", Font.ITALIC, 10));
+				error.setLocation(okButton.getX(), okButton.getY() + 100 );
+				error.setVisible(true);
+				((JButton)actionEvent.getSource()).getParent().add(error);
 			}
 			}
 			
 		});
 	}
+	
+	
+	
 	
 }
