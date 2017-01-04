@@ -26,12 +26,14 @@ public abstract class WeaponTypes {
 	
 	
 	public static void addWeaponsToTank(GameMap gameMap, Tank tank){
-		
+	
+	for(int i = 0; i < 3; i++){	
 		SingleShot singleShot = new SingleShot(gameMap,	tank);
 		tank.addWeapon(singleShot);
 		
-		Cutter	cutter = new Cutter(gameMap,	tank);
+		Cutter	cutter = new Cutter(gameMap, tank);
 		tank.addWeapon(cutter);
+	}
 		
 	}
 	

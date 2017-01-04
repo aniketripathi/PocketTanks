@@ -128,7 +128,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	//set animationPanel where animation takes place
 		animationPanel = new JPanel();
 		animationPanel.setSize(gameRegion.width, gameRegion.height);
-		animationPanel.setLocation(gameRegion.x - gameRegion.width/2, gameRegion.y- gameRegion.height/2);
+		animationPanel.setLocation(gameRegion.getX() - gameRegion.width/2, gameRegion.getY()- gameRegion.height/2);
 		animationPanel.setFocusable(true);
 		animationPanel.setLayout(null);
 		animationPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -393,6 +393,9 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	public void updatePlayerNames(String playerName1, String playerName2){
 		player1.setName(playerName1);
 		player2.setName(playerName2);
+		
+		playerNameLabel1.setText(player1.getName());
+		playerNameLabel2.setText(player2.getName());
 	}
 	
 	
@@ -527,7 +530,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	            }
 	         
 	            //repaint only required area
-	            this.repaint(new Rectangle(gameRegion.x -gameRegion.width/2, gameRegion.y - gameRegion.height/2, gameRegion.width, gameRegion.height));
+	            this.repaint(new Rectangle(gameRegion.getX() -gameRegion.width/2, gameRegion.getY() - gameRegion.height/2, gameRegion.width, gameRegion.height));
 	         
 	            //Update the frames we got.
 	            int thisSecond = (int) (lastUpdateTime / 1000000000);

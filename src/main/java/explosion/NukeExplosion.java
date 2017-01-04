@@ -21,7 +21,7 @@ public class NukeExplosion extends Explosion {
 	private final	int 	TOTAL_IMAGES = 50;
 	
 	
-public NukeExplosion(Weapon parentWeapon, GameMap gameMap, int x, int y){
+public NukeExplosion(Weapon parentWeapon, GameMap gameMap, float x, float y){
 	
 		
 		
@@ -68,7 +68,7 @@ public NukeExplosion(Weapon parentWeapon, GameMap gameMap, int x, int y){
 				e.printStackTrace();
 			}
 			
-			graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+			graphics.drawImage(image, region.getX() - region.width/2, region.getY() - region.height/2, null);
 			
 		}
 		

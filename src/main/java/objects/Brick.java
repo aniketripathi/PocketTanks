@@ -34,7 +34,7 @@ public class Brick extends GameObject{
 	
 	@Override
 	public void render(Graphics2D graphics) {
-		graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+		graphics.drawImage(image, region.getX() - region.width/2, region.getY() - region.height/2, null);
 		
 	}
 

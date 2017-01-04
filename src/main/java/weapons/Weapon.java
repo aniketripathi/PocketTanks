@@ -33,8 +33,8 @@ if(isMoving){
 	Region gameRegion = gameMap.gameRegion;
 			
 	// inside game region , left right and below. Going above game region is allowed.
-		if(region.x - region.width/2 > gameRegion.x - gameRegion.width/2	&& region.x + region.width/2 < gameRegion.x + gameRegion.width/2
-			&& region.y + region.height/2 < gameRegion.y + gameRegion.height/2){
+		if(region.getX() - region.width/2 > gameRegion.getX() - gameRegion.width/2	&& region.getX() + region.width/2 < gameRegion.getX() + gameRegion.width/2
+			&& region.getY() + region.height/2 < gameRegion.getY() + gameRegion.height/2){
 			
 	for(GameObject gameObject: GameMap.collisionObjects){					// scan through collision objects
 			if(region.isColliding(gameObject.getRegion())){							

@@ -14,7 +14,7 @@ public abstract class Explosion extends GameObject{
 	
 	
 	
-	public static Explosion getExplosionInstance(Weapon parentWeapon, int explosionType, GameMap gameMap, int x, int y){
+	public static Explosion getExplosionInstance(Weapon parentWeapon, int explosionType, GameMap gameMap, float x, float y){
 		switch(explosionType){
 		case ExplosionTypes.SMALL_EXPLOSION :
 			return new SmallExplosion(parentWeapon, gameMap, x, y);

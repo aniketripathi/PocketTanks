@@ -11,8 +11,8 @@ import environment.Region;
 public abstract class GameObject {
 
 	protected Region region;
-	protected int x_velocity;
-	protected int y_velocity;
+	protected float x_velocity;
+	protected float y_velocity;
 	protected StringBuffer fileNames;
 	protected BufferedImage image;
 	protected String folderFilesPath = null;	

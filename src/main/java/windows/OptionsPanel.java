@@ -99,16 +99,15 @@ public class OptionsPanel extends JPanel {
 						
 						config.putPlayerName(Config.PLAYER_NAME1, playerName1.getText().toString());
 						config.putPlayerName(Config.PLAYER_NAME2, playerName2.getText().toString());
+						GamePanel gamePanel = (GamePanel)((JButton)actionEvent.getSource()).getParent().getParent().getComponent(2);
+						gamePanel.updatePlayerNames(playerName1.getText().toString(), playerName2.getText().toString());
+						
 						cardLayout.show(((JButton)actionEvent.getSource()).getParent().getParent(), "menuPanel");
 						
 				}
 				
 				else {
-				JLabel error= new JLabel("* The number of characters in name should be less than 16.");
-				error.setFont(new Font("Tahoma", Font.ITALIC, 10));
-				error.setLocation(okButton.getX(), okButton.getY() + 100 );
-				error.setVisible(true);
-				((JButton)actionEvent.getSource()).getParent().add(error);
+				//show error
 			}
 			}
 			

@@ -50,7 +50,7 @@ public class Cutter extends Weapon{
 
 	@Override
 	public int getWeaponImageNumber() {
-		return (region.x/10)%5 + 1;
+		return (region.getX()/10)%5 + 1;
 	}
 	
 	@Override
@@ -65,7 +65,7 @@ public class Cutter extends Weapon{
 			e.printStackTrace();
 		}
 		
-		graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+		graphics.drawImage(image, region.getX() - region.width/2, region.getY() - region.height/2, null);
 	}
 
 

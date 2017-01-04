@@ -20,7 +20,7 @@ public class SmallExplosion extends Explosion{
 	private 		int 	updateTimes;
 	private final	int 	TOTAL_IMAGES = 31;
 	
-	public SmallExplosion(Weapon parentWeapon, GameMap gameMap, int x, int y){
+	public SmallExplosion(Weapon parentWeapon, GameMap gameMap, float x, float y){
 	
 		
 		
@@ -66,7 +66,7 @@ public class SmallExplosion extends Explosion{
 			e.printStackTrace();
 		}
 		
-		graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+		graphics.drawImage(image, region.getX() - region.width/2, region.getY() - region.height/2, null);
 		
 	}
 

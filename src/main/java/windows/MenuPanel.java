@@ -98,7 +98,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 			optionsRegion.width *= 2;				// options word contains more letters than play word hence width will be more.
 			
 			exitRegion = new Region(playRegion);
-			exitRegion.y = optionsRegion.y + 2 * unit_y;	//little below option region, one unit for space
+			exitRegion.y = optionsRegion.getY() + 2 * unit_y;	//little below option region, one unit for space
 			
 			titleRegion = new Region(unit_x * 10, unit_y * 3 ,unit_x * 10, unit_y * 3); // width = approximately 10 unit while height = approximately 3 units
 			
@@ -139,12 +139,12 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 		graphics.setColor(java.awt.Color.RED);
 		
 		
-		graphics.drawString("PLAY", playRegion.x - playRegion.width/2, playRegion.y + playRegion.height/2); 					// upper left corner of region
-		graphics.drawString("OPTIONS", optionsRegion.x - optionsRegion.width/2, optionsRegion.y + optionsRegion.height/2);		// upper left corner of region
-		graphics.drawString("EXIT", exitRegion.x - exitRegion.width/2, exitRegion.y + exitRegion.height/2);						//upper left corner of region
-		graphics.drawImage(titleImage, titleRegion.x - titleRegion.width/2, titleRegion.y - titleRegion.height/2, null);		// lower left corner of region
+		graphics.drawString("PLAY", playRegion.getX() - playRegion.width/2, playRegion.getY() + playRegion.height/2); 					// upper left corner of region
+		graphics.drawString("OPTIONS", optionsRegion.getX() - optionsRegion.width/2, optionsRegion.getY() + optionsRegion.height/2);		// upper left corner of region
+		graphics.drawString("EXIT", exitRegion.getX() - exitRegion.width/2, exitRegion.getY() + exitRegion.height/2);						//upper left corner of region
+		graphics.drawImage(titleImage, titleRegion.getX() - titleRegion.width/2, titleRegion.getY() - titleRegion.height/2, null);		// lower left corner of region
 		
-		graphics.drawImage(tankImage, tankRegion.x - tankRegion.width/2, tankRegion.y - tankRegion.height/2, null);
+		graphics.drawImage(tankImage, tankRegion.getX() - tankRegion.width/2, tankRegion.getY() - tankRegion.height/2, null);
 		//if(direction == 'r') graphics.drawLine(tankRegion.x, tankRegion.y, tankRegion.x + 25, tankRegion.y - 25);
 		
 		
@@ -163,14 +163,14 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	/** rate of change of tank center **/	
 		final int rate = 2;
 		if(direction == 'r'){
-			if(tankRegion.x + tankRegion.width/2 + 1 >= wholeRegion.x + wholeRegion.width/2){
+			if(tankRegion.getX() + tankRegion.width/2 + 1 >= wholeRegion.getX() + wholeRegion.width/2){
 				tankRegion.x -= rate;
 				direction = 'l';
 			}
 			else tankRegion.x += rate;
 		}
 		if(direction == 'l'){
-			if(tankRegion.x - tankRegion.width/2 + 1 <= wholeRegion.x - wholeRegion.width/2){
+			if(tankRegion.getX() - tankRegion.width/2 + 1 <= wholeRegion.getX() - wholeRegion.width/2){
 				tankRegion.x +=rate;
 				direction = 'r';
 			}
@@ -180,7 +180,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	}
 	
 	private static int getTankImageNumber(Region region){
-		return (region.x/10)%7 + 1;
+		return (region.getX()/10)%7 + 1;
 		
 	}
 	
@@ -188,7 +188,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	
 	public void animate(){
 		Rectangle rec = new Rectangle(tankRegion.width, tankRegion.height);
-		rec.setLocation(tankRegion.x - tankRegion.width/2, tankRegion.y - tankRegion.height/2);
+		rec.setLocation(tankRegion.getX() - tankRegion.width/2, tankRegion.getY() - tankRegion.height/2);
 	/** only draw a specific region **/	
 		this.repaint(rec);
 		this.updateTankRegion();

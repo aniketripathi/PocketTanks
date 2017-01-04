@@ -46,7 +46,7 @@ public class Tank extends GameObject{
 		this.gameMap = gameMap;
 			
 		//set properties related to moving
-		moves = 3;
+		moves = 5;
 		singleLeftMoves = 0;
 		singleRightMoves = 0;
 		isMovingLeft = false;
@@ -120,8 +120,8 @@ public class Tank extends GameObject{
 		weapon.region.y = getWeaponFiringPointY();
 	
 		//set weapon's initial velocity determined by power of the tank
-		weapon.x_velocity = (int) ( power * Math.cos(Math.toRadians(angle))/POWER_TO_VELOCITY_FACTOR );
-		weapon.y_velocity = (int) - ( power * Math.sin(Math.toRadians(angle))/POWER_TO_VELOCITY_FACTOR );
+		weapon.x_velocity = (float) ( power * Math.cos(Math.toRadians(angle))/POWER_TO_VELOCITY_FACTOR );
+		weapon.y_velocity = (float) -( power * Math.sin(Math.toRadians(angle))/POWER_TO_VELOCITY_FACTOR );
 		
 		
 		// weapon movement enabled
@@ -145,7 +145,7 @@ public class Tank extends GameObject{
 	
 	
 	private static int getTankImageNumber(Region region){
-		return (region.x/10)%8 + 1;			// to determine image number based on the position of the tank
+		return (region.getX()/10)%8 + 1;			// to determine image number based on the position of the tank
 		
 	}
 	
@@ -187,23 +187,23 @@ public class Tank extends GameObject{
 		}
 		
 		// draw tank
-		graphics.drawImage(image, region.x - region.width/2, region.y - region.height/2, null);
+		graphics.drawImage(image, region.getX() - region.width/2, region.getY() - region.height/2, null);
 		
 		//draw tank gun, change the color of graphics and then set the color back.
 		Color color = graphics.getColor();
 		graphics.setColor(Color.WHITE);
-		graphics.drawLine(region.x, region.y, getWeaponFiringPointX(), getWeaponFiringPointY());
+		graphics.drawLine(region.getX(), region.getY(), getWeaponFiringPointX(), getWeaponFiringPointY());
 		graphics.setColor(color);	// set back the original color
 		}
 
 	
 
 	public int getWeaponFiringPointX(){
-		return (this.region.x + (int)(Tank.tankGunLength * Math.cos(Math.toRadians(angle))));		// gives the x co-ordinate of the end of tank's gun
+		return (int) Math.round(this.region.x + Tank.tankGunLength * Math.cos(Math.toRadians(angle)));		// gives the x co-ordinate of the end of tank's gun
 	}
 	
 	public int getWeaponFiringPointY(){
-		return (this.region.y -(int) (Tank.tankGunLength * Math.sin(Math.toRadians(angle))));		// gives the y co-ordinate of the end of tank's gun
+		return (int) (this.region.y  - Tank.tankGunLength * Math.sin(Math.toRadians(angle)));		// gives the y co-ordinate of the end of tank's gun
 	}
 	
 	
@@ -213,7 +213,7 @@ public class Tank extends GameObject{
 			
 			if(singleLeftMoves > 0){
 			   //moves a single unit of MOVE_LENGTH only if inside game Region
-				if(region.x - region.width/2 >= gameMap.gameRegion.x - gameMap.gameRegion.width/2){	
+				if(region.getX() - region.width/2 >= gameMap.gameRegion.getX() - gameMap.gameRegion.width/2){	
 					region.x -= MOVE_LENGTH;
 					--singleLeftMoves;
 			   }
@@ -231,7 +231,7 @@ public class Tank extends GameObject{
 	if(isMovingRight){										// moving right enabled
 		   if(singleRightMoves > 0){						
 			   	//move a single unit of MOVE_LENGTH only if inside game Region
-			   if(region.x + region.width/2 <= gameMap.gameRegion.x + gameMap.gameRegion.width/2){
+			   if(region.getX() + region.width/2 <= gameMap.gameRegion.getY() + gameMap.gameRegion.width/2){
 				region.x += MOVE_LENGTH;
 				--singleRightMoves;
 				}
