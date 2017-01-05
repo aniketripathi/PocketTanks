@@ -60,18 +60,21 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	
 	public MenuPanel(CardLayout cardLayout){
 		super();
+		
+		
 		createRegions();
 		titleImage = null;
 		tankImage = null;
 		direction = 'r';
 		paintThread = new Thread(this, "paintThread");
-		tankImageFileName = new StringBuffer();
-		tankImageFileName.append("src/main/resources/menuPanel/tank1/tank1.png");
+		tankImageFileName = new StringBuffer("src/main/resources/menuPanel/tank1/tank1.png");
+		
 		this.cardLayout = cardLayout;
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		paintThread.start();
 		this.setBackground(Color.getHSBColor(0.2f, 0.6f, 0.7f));
+		
 	}
 
 
@@ -111,6 +114,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	public void render(Graphics2D graphics){
 		
 		graphics.setBackground(Color.BLUE);
+	
 		
 		// remove the comment to view the grid
 		//wholeRegion.drawGrid(graphics, BLOCKS, BLOCKS);
@@ -219,7 +223,12 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 	public void mouseClicked(MouseEvent mouseEvent) {
 	if(mouseEvent.getButton() == MouseEvent.BUTTON1){	
 		
-			 if(playRegion.isInside(mouseEvent.getX(), mouseEvent.getY()))		cardLayout.show(((JPanel)mouseEvent.getSource()).getParent(), "gamePanel");
+			 if(playRegion.isInside(mouseEvent.getX(), mouseEvent.getY()))		{
+				 GamePanel gamePanel = new GamePanel(cardLayout);
+				 JPanel containerPanel = (JPanel) ((JPanel) mouseEvent.getSource()).getParent() ;
+				 containerPanel.add(gamePanel, Game.GAME_PANEL);
+				 cardLayout.show(containerPanel, Game.GAME_PANEL);
+			 }
 		
 		else if(optionsRegion.isInside(mouseEvent.getX(), mouseEvent.getY()))	cardLayout.show(((JPanel)mouseEvent.getSource()).getParent(), "optionsPanel");
 		

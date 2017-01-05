@@ -26,6 +26,7 @@ import utility.Config;
 import utility.Signals;
 import environment.GameMap;
 import environment.Region;
+import javafx.scene.paint.Color;
 import objects.Brick;
 import objects.ObjectHandler;
 import objects.Player;
@@ -133,7 +134,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		animationPanel.setLayout(null);
 		animationPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		add(animationPanel);
-		
+		animationPanel.setBackground(java.awt.Color.getHSBColor(0.52f,  0.3f,  0.9f));
 	
 	/** adding property components and setting their location, size and other  properties **/
 		powerSlider1 = new JSlider();
@@ -333,7 +334,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 				paintThread = new Thread(this, "paintThread");
 				paintThread.start();
 		
-		
+				
 	}
 	
 	
@@ -343,10 +344,11 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	private void renderGame(Graphics2D graphics){
 		//to draw grid remove comment 
 		//gameRegion.drawGridWithUnit(graphics, UNIT_X, UNIT_Y);
-		
 		//draw game objects
-		objectHandler.renderObjects(graphics);
 		
+		
+		
+		objectHandler.renderObjects(graphics);
 	}
 	
 	
@@ -603,8 +605,8 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		animationPanel.add(whoWon);
 		whoWon.setText(message);
 		whoWon.setFont(new Font("Tahoma", Font.BOLD, 15));
-		whoWon.setSize(150, 50);
-		whoWon.setLocation(exitButton.getX() - 10, exitButton.getY() - 70 );
+		whoWon.setSize(message.length() * 10, 50);
+		whoWon.setLocation(exitButton.getX() - message.length() * 10/4, exitButton.getY() - 70 );
 		
 		
 		// stop paintThread;

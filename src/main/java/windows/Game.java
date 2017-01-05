@@ -7,8 +7,9 @@ import javax.swing.JPanel;
 
 public class Game {
 	
-	
-	
+	public static final String MENU_PANEL = "menuPanel";
+	public static final String OPTIONS_PANEL = "optionsPanel";
+	public static final String GAME_PANEL = "gamePanel";
 
 	public static void createWindow(){
 		Frames frame = new Frames();
@@ -16,17 +17,17 @@ public class Game {
 		
 		JPanel containerPanel = new JPanel();
 		MenuPanel menuPanel = new MenuPanel(cardLayout);
-		GamePanel gamePanel = new GamePanel(cardLayout);
+		
 		OptionsPanel optionsPanel = new OptionsPanel(cardLayout);
 		
 		containerPanel.setLayout(cardLayout);
-		containerPanel.add("menuPanel", menuPanel);
-		containerPanel.add("optionsPanel", optionsPanel);
-		containerPanel.add("gamePanel", gamePanel);
+		containerPanel.add(Game.MENU_PANEL, menuPanel);
+		containerPanel.add(Game.OPTIONS_PANEL, optionsPanel);
+		
 		frame.add(containerPanel);
 		frame.setVisible(true);
 		containerPanel.setVisible(true);
-		cardLayout.show(containerPanel, "menuPanel");
+		cardLayout.show(containerPanel, Game.MENU_PANEL);
 
 	}
 	
