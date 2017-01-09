@@ -1,39 +1,17 @@
-package windows;
-
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-
-
-
-public class Game {
-	
-	public static final String MENU_PANEL = "menuPanel";
-	public static final String OPTIONS_PANEL = "optionsPanel";
-	public static final String GAME_PANEL = "gamePanel";
-
-	public static void createWindow(){
-		Frames frame = new Frames();
-		CardLayout cardLayout = new CardLayout();
-		
-		JPanel containerPanel = new JPanel();
-		MenuPanel menuPanel = new MenuPanel(cardLayout);
-		
-		OptionsPanel optionsPanel = new OptionsPanel(cardLayout);
-		
-		containerPanel.setLayout(cardLayout);
-		containerPanel.add(Game.MENU_PANEL, menuPanel);
-		containerPanel.add(Game.OPTIONS_PANEL, optionsPanel);
-		
-		frame.add(containerPanel);
-		frame.setVisible(true);
-		containerPanel.setVisible(true);
-		cardLayout.show(containerPanel, Game.MENU_PANEL);
-
-	}
-	
-	public static void main(String[] args){
-		createWindow();
-		
-		}
-	
-}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jsmoothproject>
+<JVMSearchPath>registry</JVMSearchPath>
+<JVMSearchPath>javahome</JVMSearchPath>
+<JVMSearchPath>jrepath</JVMSearchPath>
+<JVMSearchPath>jdkpath</JVMSearchPath>
+<JVMSearchPath>exepath</JVMSearchPath>
+<JVMSearchPath>jview</JVMSearchPath>
+<arguments></arguments>
+<classPath>..\..\..\..\.classpath</classPath>
+<embeddedJar>false</embeddedJar>
+<initialMemoryHeap>-1</initialMemoryHeap>
+<mainClassName></mainClassName>
+<maximumMemoryHeap>-1</maximumMemoryHeap>
+<maximumVersion></maximumVersion>
+<minimumVersion></minimumVersion>
+</jsmoothproject>
