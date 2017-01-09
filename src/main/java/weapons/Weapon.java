@@ -18,7 +18,7 @@ protected int type;
 protected boolean isMoving;
 protected Tank	parentTank;
 protected int unitSecondCount = 0;
-protected final int MAX_UNIT_SECOND_COUNT = 5;
+protected final int MAX_UNIT_SECOND_COUNT = 4;
 protected int explosionType;
 protected float damage;
 

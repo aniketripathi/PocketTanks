@@ -39,7 +39,7 @@ public class Tank extends GameObject{
 	private int 				singleRightMoves;
 	
 	//related to power
-	public static final int 	POWER_TO_VELOCITY_FACTOR = 6; 
+	public static final float 	POWER_TO_VELOCITY_FACTOR = 5.3f; 
 	
 	public Tank(Player player, GameMap gameMap){
 		// set gameMap	
@@ -231,7 +231,7 @@ public class Tank extends GameObject{
 	if(isMovingRight){										// moving right enabled
 		   if(singleRightMoves > 0){						
 			   	//move a single unit of MOVE_LENGTH only if inside game Region
-			   if(region.getX() + region.width/2 <= gameMap.gameRegion.getY() + gameMap.gameRegion.width/2){
+			   if(region.getX() + region.width/2 <= gameMap.gameRegion.getX() + gameMap.gameRegion.width/2){
 				region.x += MOVE_LENGTH;
 				--singleRightMoves;
 				}
