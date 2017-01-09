@@ -17,13 +17,11 @@ public class Game {
 		
 		JPanel containerPanel = new JPanel();
 		MenuPanel menuPanel = new MenuPanel(cardLayout);
-		GamePanel gamePanel = new GamePanel(cardLayout);
 		OptionsPanel optionsPanel = new OptionsPanel(cardLayout);
 		
 		containerPanel.setLayout(cardLayout);
 		containerPanel.add(Game.MENU_PANEL, menuPanel);
 		containerPanel.add(Game.OPTIONS_PANEL, optionsPanel);
-		containerPanel.add(Game.GAME_PANEL, gamePanel);
 		frame.add(containerPanel);
 		frame.setVisible(true);
 		containerPanel.setVisible(true);
