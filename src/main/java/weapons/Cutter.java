@@ -25,7 +25,7 @@ public class Cutter extends Weapon{
 		explosionType = ExplosionTypes.NUKE_EXPLOSION;
 		
 		//set damage
-		damage = 2.3f;
+		damage = 1.5f;
 		
 		// set parent tank
 			parentTank = tank;

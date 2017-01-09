@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -92,17 +93,20 @@ public class OptionsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
-				if(playerName1.getText().toString().length() <= 15 || playerName2.getText().toString().length() <= 15 ){
+				if( (playerName1.getText().toString().length()) <= 15 && (playerName2.getText().toString().length()) <= 15 ){
 						
 						config.putPlayerName(Config.PLAYER_NAME1, playerName1.getText().toString());
 						config.putPlayerName(Config.PLAYER_NAME2, playerName2.getText().toString());
 
 						
 						cardLayout.show(((JButton)actionEvent.getSource()).getParent().getParent(), Game.MENU_PANEL);
-						
+						System.out.println(playerName1.getText().toString().length());
 				}
 				
 				else {
+					
+					JOptionPane.showMessageDialog(((JButton)actionEvent.getSource()).getParent(), "Name cannot exceed more than 15 characters", "Too lengthy name", JOptionPane.ERROR_MESSAGE);
+					
 				//show error
 			}
 			}
