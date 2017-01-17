@@ -43,7 +43,7 @@ This is only the basic version of the game hence it contains only basic features
 ### Development
 The folder src/main/java contains the source code of the game.
 
-You can add your custom weapons and explosions. All you need to do is to create your own customWeapon class which extends the original Weapon class and register it to WeaponTypes.java . Similarly for custom explosion your class must extend explosion class and register it to ExoplosionTypes.java. Remember that the explosion or weapon is only updated or rendered if it is in objectHandler's update or render list. All the images should be kept in src/main/resources/ folder.
+You can add your custom weapons and explosions. All you need to do is create your own customWeapon class and extend the original Weapon class and register it to WeaponTypes.java . Similarly for custom explosion your class must extend explosion class and register it to ExoplosionTypes.java. Remember that the explosion or weapon is only updated or rendered if it is in objectHandler's update or render list. All the images should be kept in src/main/resources/ folder.
 
 
 ### Resources
