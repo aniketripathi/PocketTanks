@@ -1,8 +1,7 @@
 package explosion;
 
-public class ExplosionTypes {
-	public static final int SMALL_EXPLOSION = 1;
-	public static final int NUKE_EXPLOSION = 2;
+public enum ExplosionType {
 	
-	
+	SMALL_EXPLOSION, NUKE_EXPLOSION;
+		
 }

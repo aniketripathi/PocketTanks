@@ -4,25 +4,24 @@ package weapons;
 import environment.GameMap;
 import environment.Region;
 import explosion.Explosion;
-import explosion.ExplosionTypes;
+import explosion.ExplosionType;
 import objects.GameObject;
 import objects.ObjectHandler;
 import objects.Tank;
 import utility.Signals;
 
-@SuppressWarnings("unused")
 public abstract class Weapon extends GameObject{
 
 
-protected int type;
+protected WeaponType type;
 protected boolean isMoving;
 protected Tank	parentTank;
 protected int unitSecondCount = 0;
 protected final int MAX_UNIT_SECOND_COUNT = 4;
-protected int explosionType;
+protected ExplosionType explosionType;
 protected float damage;
 
-public int getType(){
+public WeaponType getType(){
 	return type;
 }
 

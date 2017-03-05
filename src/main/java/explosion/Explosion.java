@@ -6,7 +6,7 @@ import weapons.Weapon;
 
 public abstract class Explosion extends GameObject{
 	
-	protected int type;
+	protected ExplosionType type;
 	protected int EXPLOSION_IMAGE_HEIGHT;
 	protected int EXPLOSION_IMAGE_WIDTH;
 	protected int EXPLOSION_IMAGE_INDEX;
@@ -14,12 +14,12 @@ public abstract class Explosion extends GameObject{
 	
 	
 	
-	public static Explosion getExplosionInstance(Weapon parentWeapon, int explosionType, GameMap gameMap, float x, float y){
+	public static Explosion getExplosionInstance(Weapon parentWeapon, ExplosionType explosionType, GameMap gameMap, float x, float y){
 		switch(explosionType){
-		case ExplosionTypes.SMALL_EXPLOSION :
+		case SMALL_EXPLOSION :
 			return new SmallExplosion(parentWeapon, gameMap, x, y);
 			
-		case ExplosionTypes.NUKE_EXPLOSION :
+		case NUKE_EXPLOSION :
 			return new NukeExplosion(parentWeapon, gameMap, x, y);
 			
 		default: return null;	

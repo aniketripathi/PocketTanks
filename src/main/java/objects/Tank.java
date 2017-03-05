@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import environment.GameMap;
 import environment.Region;
 import weapons.Weapon;
-import weapons.WeaponTypes;
+import weapons.WeaponType;
 
 public class Tank extends GameObject{
 	
@@ -78,7 +78,7 @@ public class Tank extends GameObject{
 		
 		// create weapons list
 		weapons = new ArrayList<Weapon>();		// create new weapons list
-		WeaponTypes.addWeaponsToTank(gameMap, this);
+		WeaponType.addWeaponsToTank(gameMap, this);
 	
 	}
 	

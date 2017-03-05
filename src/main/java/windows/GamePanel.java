@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.prefs.Preferences;
 
 import javax.swing.AbstractAction;
 import javax.swing.DefaultListCellRenderer;
@@ -26,7 +25,6 @@ import utility.Config;
 import utility.Signals;
 import environment.GameMap;
 import environment.Region;
-import javafx.scene.paint.Color;
 import objects.Brick;
 import objects.ObjectHandler;
 import objects.Player;
@@ -37,7 +35,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
 
-@SuppressWarnings("unused")
+
 public class GamePanel extends JPanel implements MouseListener, ActionListener, Runnable{
 
 
@@ -168,7 +166,7 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
 		        if (value instanceof Weapon) {
-		            value = WeaponTypes.getName( ((Weapon)value).getType());
+		            value = WeaponType.getName( ((Weapon)value).getType());
 		        }
 
 		        return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); //To change body of generated methods, choose Tools | Templates.
