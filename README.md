@@ -47,7 +47,7 @@ You can add your custom weapons and explosions. All you need to do is create you
 
 
 ### Resources
-All images are custom-made. 
+All images are custom. 
 
 
 __Recent Changes__: Replaced integer constants with enum
