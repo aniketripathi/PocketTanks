@@ -23,8 +23,8 @@ public class GameMap {
 	public Region tank2Region;
 	
 // objects which don't die and are responsible for collisions	
-	public static ArrayList<GameObject> collisionObjects;
-	
+	public static ArrayList<GameObject> collisionObjects;		/******* TODO make it non - static ********/
+		
 // game template is a unique id for a map	
 	public static final int GAME_MAP_TEMPLATE1 = 1;
 	
