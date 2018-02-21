@@ -135,7 +135,7 @@ public class MenuPanel extends JPanel implements Runnable, MouseListener, Compon
 			e.printStackTrace();
 			System.err.println("Error loading tank image.");
 		}
-		tankImageFileName.replace(TANK_NUMBER_INDEX, TANK_NUMBER_INDEX+1, new Integer(getTankImageNumber(tankRegion)).toString());
+		tankImageFileName.replace(TANK_NUMBER_INDEX, TANK_NUMBER_INDEX+1, Integer.valueOf(getTankImageNumber(tankRegion)).toString());
 		
 		
 		

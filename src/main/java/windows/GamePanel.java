@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -13,6 +14,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,12 +50,13 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	private  Region 			gameRegion;			// where game is played
 	private  Region 			propertyRegion;		// where property components are located
 
-/** Unit block of game region **/
-	private  final int 			UNIT_X = 8;			// 8 pixels
-	private  final int 			UNIT_Y = 8;			// 8 pixels
 
-/** separate panel where animation takes place **/
+
+/** separate panel where animation takes place and where properties are defined**/
 	private  JPanel				animationPanel;
+	private  JPanel 			propertyPanel;
+	private	 JPanel				player1Panel;
+	private  JPanel				player2Panel;
 	
 /** property components 1 denotes that component is for player 1 and 2 denotes that component is for player 2**/	
 	private  JSlider 			powerSlider1;		
@@ -133,30 +137,65 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		animationPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		add(animationPanel);
 		animationPanel.setBackground(java.awt.Color.getHSBColor(0.52f,  0.3f,  0.9f));
+		
+	//set propertyPanel where properties are shown
+		propertyPanel = new JPanel();
+		propertyPanel.setSize(propertyRegion.width, propertyRegion.height);
+		propertyPanel.setLocation(propertyRegion.getX() - propertyRegion.width/2, propertyRegion.getY()- propertyRegion.height/2);
+		propertyPanel.setFocusable(true);
+		propertyPanel.setLayout(new BoxLayout(propertyPanel, BoxLayout.LINE_AXIS));
+		propertyPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		add(propertyPanel);
+		
+	
+		player1Panel = new JPanel();
+		player1Panel.add(Box.createRigidArea(new Dimension(player1Panel.getWidth(), 20)));
+		JPanel innerPanel1 = new JPanel();
+		innerPanel1.setLayout(new BoxLayout(innerPanel1, BoxLayout.LINE_AXIS));
+		player1Panel.setLayout(new BoxLayout(player1Panel, BoxLayout.PAGE_AXIS));
+		player1Panel.setMaximumSize(new Dimension(propertyRegion.width/2 - 150, propertyRegion.height));
+		player1Panel.add(innerPanel1);
+		propertyPanel.add(player1Panel);
+		innerPanel1.setAlignmentX(0.2f);
+		player1Panel.add(Box.createRigidArea(new Dimension(player1Panel.getWidth(), 30)));
+		
+		
+		player2Panel = new JPanel();
+		player2Panel.add(Box.createRigidArea(new Dimension(player1Panel.getWidth(), 20)));
+		JPanel innerPanel2 = new JPanel();
+		innerPanel2.setLayout(new BoxLayout(innerPanel2, BoxLayout.LINE_AXIS));
+		player2Panel.setLayout(new BoxLayout(player2Panel, BoxLayout.PAGE_AXIS));
+		player2Panel.setMaximumSize(new Dimension(propertyRegion.width/2 - 150, propertyRegion.height));
+		player2Panel.add(innerPanel2);
+		propertyPanel.add(player2Panel);
+		innerPanel2.setAlignmentX(0.8f);
+		player2Panel.add(Box.createRigidArea(new Dimension(player1Panel.getWidth(), 30)));
+		
+	
 	
 	/** adding property components and setting their location, size and other  properties **/
 		powerSlider1 = new JSlider();
-		add(powerSlider1);
-		powerSlider1.setSize(340, 45);
-		powerSlider1.setLocation(UNIT_X * 10, UNIT_Y * 75);
+		player1Panel.add(powerSlider1);
+		powerSlider1.setMaximumSize(new Dimension(400, 45));
 		powerSlider1.setMinimum(0);
 		powerSlider1.setMaximum(100);
 		powerSlider1.setPaintLabels(true);
 		powerSlider1.setPaintTicks(true);
 		powerSlider1.setMajorTickSpacing(20);
 		powerSlider1.setMinorTickSpacing(5);
+		powerSlider1.setAlignmentX(0.2f);
 		
 		
 		powerSlider2 = new JSlider();
-		add(powerSlider2);
-		powerSlider2.setSize(340, 45);
-		powerSlider2.setLocation(Frames.WIDTH/2 + UNIT_X * 20, UNIT_Y * 75);
+		player2Panel.add(powerSlider2);
+		powerSlider2.setMaximumSize(new Dimension(400, 45));
 		powerSlider2.setMinimum(0);
 		powerSlider2.setMaximum(100);
 		powerSlider2.setPaintLabels(true);
 		powerSlider2.setPaintTicks(true);
 		powerSlider2.setMajorTickSpacing(20);
 		powerSlider2.setMinorTickSpacing(5);
+		powerSlider2.setAlignmentX(0.8f);
 		
 	/** Inner class for custom rendering of comboBox **/	
 		class ComboBoxRenderer extends  DefaultListCellRenderer{
@@ -178,55 +217,52 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	/*********************/
 	/** create property components and set their configuration **/	
 		weaponsListComboBox1 = new JComboBox<Object>();
-		add(weaponsListComboBox1);
-		weaponsListComboBox1.setSize(150, 20);
-		weaponsListComboBox1.setLocation(powerSlider1.getX(), powerSlider1.getY() - 35);
+		innerPanel1.add(weaponsListComboBox1);
+		weaponsListComboBox1.setMaximumSize(new Dimension(150, 20));
 		weaponsListComboBox1.setRenderer(new ComboBoxRenderer());
+		innerPanel1.add(Box.createRigidArea(new Dimension(25, innerPanel1.getHeight())));
 		
 		weaponsListComboBox2 = new JComboBox<Object>();
-		add(weaponsListComboBox2);
-		weaponsListComboBox2.setSize(150, 20);
-		weaponsListComboBox2.setLocation(powerSlider2.getX(), powerSlider2.getY() - 35);
+		innerPanel2.add(weaponsListComboBox2);
+		weaponsListComboBox2.setMaximumSize(new Dimension(150, 20));
+		innerPanel2.add(Box.createRigidArea(new Dimension(25, innerPanel2.getHeight())));
 		weaponsListComboBox2.setRenderer(new ComboBoxRenderer());
 		
 		
 		angleSpinner1 = new JSpinner();
-		add(angleSpinner1);
-		angleSpinner1.setSize(75, 20);
-		angleSpinner1.setLocation(weaponsListComboBox1.getX() + 250, weaponsListComboBox1.getY() );
-		angleSpinner1.setModel(new SpinnerNumberModel(new Integer(60), new Integer(0), new Integer(180), new Integer(1)));
-		angleSpinner1.setValue(new Integer(60));
-		
+		innerPanel1.add(angleSpinner1);
+		angleSpinner1.setMaximumSize(new Dimension(75, 20));
+		angleSpinner1.setModel(new SpinnerNumberModel(Integer.valueOf(60), Integer.valueOf(0), Integer.valueOf(180), Integer.valueOf(1)));
+		angleSpinner1.setValue(Integer.valueOf(60));
+		innerPanel1.add(Box.createRigidArea(new Dimension(25, innerPanel1.getHeight())));
 		
 		angleSpinner2 = new JSpinner();
-		add(angleSpinner2);
-		angleSpinner2.setSize(75, 20);
-		angleSpinner2.setLocation(weaponsListComboBox2.getX() + 250, weaponsListComboBox2.getY() );
-		angleSpinner2.setModel(new SpinnerNumberModel(new Integer(60), new Integer(0), new Integer(180), new Integer(1)));
-		angleSpinner2.setValue(new Integer(120));
+		innerPanel2.add(angleSpinner2);
+		angleSpinner2.setMaximumSize(new Dimension(75, 20));
+		angleSpinner2.setModel(new SpinnerNumberModel(Integer.valueOf(60), Integer.valueOf(0), Integer.valueOf(180), Integer.valueOf(1)));
+		angleSpinner2.setValue(Integer.valueOf(120));
+		innerPanel2.add(Box.createRigidArea(new Dimension(25, innerPanel2.getHeight())));
 	
 		fireButton = new JButton();
-		add(fireButton);
-		fireButton.setSize(75, 40);
-		fireButton.setLocation(angleSpinner1.getX() + 250, angleSpinner1.getY());
+		propertyPanel.add(fireButton,1);
+		fireButton.setMaximumSize(new Dimension(150, 40));
 		fireButton.setText("Fire");
+		fireButton.setAlignmentX(0.5f);
 	
 	
-		movesLabel1 = new JLabel(new Integer(player1.tank.moves).toString());
+		movesLabel1 = new JLabel(Integer.valueOf(player1.tank.moves).toString());
 		movesLabel1.setFont(new Font("Tahoma", Font.BOLD, 25));
-		add(movesLabel1);
-		movesLabel1.setSize(30, 30);
-		movesLabel1.setLocation(angleSpinner1.getX() + 120, angleSpinner1.getY());
+		innerPanel1.add(movesLabel1);
+		movesLabel1.setMaximumSize(new Dimension(30, 30));
 		
-		movesLabel2 = new JLabel(new Integer(player2.tank.moves).toString());
+		movesLabel2 = new JLabel(Integer.valueOf(player2.tank.moves).toString());
 		movesLabel2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		add(movesLabel2);
-		movesLabel2.setSize(30, 30);
-		movesLabel2.setLocation(angleSpinner2.getX() + 120, angleSpinner2.getY());
+		innerPanel2.add(movesLabel2);
+		movesLabel2.setMaximumSize(new Dimension(30, 30));
 		
 		playerNameLabel1 = new JLabel(player1.getName());
 		playerNameLabel1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		playerNameLabel1.setLocation(weaponsListComboBox1.getX(), 5);
+		playerNameLabel1.setLocation(animationPanel.getX() + 50, 5);
 		animationPanel.add(playerNameLabel1);
 		playerNameLabel1.setSize(100, 30);
 		
@@ -234,20 +270,21 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		
 		playerNameLabel2 = new JLabel(player2.getName());
 		playerNameLabel2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		playerNameLabel2.setLocation(weaponsListComboBox2.getX()+ 300, 5);
-		animationPanel.add(playerNameLabel2);
 		playerNameLabel2.setSize(100, 30);
+		playerNameLabel2.setLocation(animationPanel.getWidth() - 50 - playerNameLabel2.getWidth(), 5);
+		animationPanel.add(playerNameLabel2);
 		
 		
 		
-		playerScoreLabel1 = new JLabel(new Integer(player1.getScore()).toString());
+		
+		playerScoreLabel1 = new JLabel(Integer.valueOf(player1.getScore()).toString());
 		playerScoreLabel1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		playerScoreLabel1.setLocation(playerNameLabel1.getX(), playerNameLabel1.getY() + 20);
 		animationPanel.add(playerScoreLabel1);
 		playerScoreLabel1.setSize(100, 30);
 		
 		
-		playerScoreLabel2 = new JLabel(new Integer(player2.getScore()).toString());
+		playerScoreLabel2 = new JLabel(Integer.valueOf(player2.getScore()).toString());
 		playerScoreLabel2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		playerScoreLabel2.setLocation(playerNameLabel2.getX(), playerNameLabel2.getY() + 20);
 		animationPanel.add(playerScoreLabel2);
@@ -416,8 +453,8 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 	
 	
 	private void updateScore(){
-		playerScoreLabel1.setText(new Integer(player1.getScore()).toString());
-		playerScoreLabel2.setText(new Integer(player2.getScore()).toString());
+		playerScoreLabel1.setText(Integer.valueOf(player1.getScore()).toString());
+		playerScoreLabel2.setText(Integer.valueOf(player2.getScore()).toString());
 
 	}
 	
@@ -449,8 +486,8 @@ public class GamePanel extends JPanel implements MouseListener, ActionListener, 
 		player2.tank.setProperties((int)angleSpinner2.getValue(), powerSlider2.getValue());
 	
 	// update moves
-		movesLabel1.setText(new Integer(player1.tank.moves).toString());
-		movesLabel2.setText(new Integer(player2.tank.moves).toString());
+		movesLabel1.setText(Integer.valueOf(player1.tank.moves).toString());
+		movesLabel2.setText(Integer.valueOf(player2.tank.moves).toString());
 	
 	//  update objects 
 		objectHandler.updateObjects();

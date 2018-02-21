@@ -38,7 +38,7 @@ public class OptionsPanel extends JPanel {
 		name1 = new JLabel("Player 1 Name");
 		name1.setHorizontalAlignment(SwingConstants.CENTER);
 		name1.setLocation(150, 50);
-		name1.setSize(100, 50);
+		name1.setSize(150, 50);
 		name1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		name1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		add(name1);
@@ -48,7 +48,7 @@ public class OptionsPanel extends JPanel {
 		name2 = new JLabel("Player 2 Name");
 		name2.setHorizontalAlignment(SwingConstants.CENTER);
 		name2.setLocation(name1.getX() + 450, 50);
-		name2.setSize(100, 50);
+		name2.setSize(150, 50);
 		name2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		name2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		add(name2);
