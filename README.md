@@ -19,13 +19,16 @@ Left and Right arrow = Right and left movement of tank
 ### Download
 
 
-You can download both executable file and jar file of the game but you require java to run the game in both the cases.
+You can download the jar file of the game but you require java to run the game.
 
 To download jar version download the folder PocketTanks-Jar.
 
-To download executable version download the folder PocketTanks - executable.
+### Running
 
-Run PocketTanks file inside the folder to run the game.
+
+Windows: Run PocketTanks file inside the folder to run the game.
+
+Linux: Go to the PocketTanks directory and execute java -jar PocketTanks.jar
 
 
 ### Features
@@ -50,6 +53,14 @@ You can add your custom weapons and explosions. All you need to do is create you
 All images are custom. 
 
 
-__Recent Changes__: Replaced integer constants with enum
+__Recent Changes__:
+
+Replaced integer constants with enum.
+
+Fix Layout issues in controls.
+
+Fix number of bricks and initial spawing point of tank issues.
+
+
 
 __Author__ : Aniket Kumar Tripathi
